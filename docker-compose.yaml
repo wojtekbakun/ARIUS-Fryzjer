@@ -1,0 +1,31 @@
+services:
+  flask-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+    # lokalny port 8080 jest połączony z portem 5000 w kontenerze
+      - "8080:5000"
+    environment:
+      FLASK_ENV: development
+      SECRET_KEY: supersecretkey
+      DATABASE_URL: sqlite:///db.sqlite
+    volumes:
+      - .:/backend
+    command: flask run --host=0.0.0.0 --port=5000
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
