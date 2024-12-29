@@ -11,6 +11,7 @@ do wypisania
 ---
 
 ## 📁 **Struktura katalogów**
+
 project-backend/
 ├── app/
 │   ├── init.py          # Inicjalizacja aplikacji
@@ -29,11 +30,13 @@ project-backend/
 
 ### Uruchomienie lokalne
 
-Do uruchomienia backendu na swoim komputerze nalezy wykonać następujące kroki:
+Backend działa przy uruchomieniu z dockerem, jednak jezeli chcesz edytować pythonowe pliki to musisz pracować na wirtualnym środowisku.
 
 #### Sklonowanie repozytorium
+```
 git clone https://github.com/wojtekbakun/ARIUS-Fryzjer
 cd ARIUS-Fryzjer
+```
 
 #### Utworzenie i aktywacja wirtualnego środowiska
 ```
@@ -58,3 +61,4 @@ Uruchomienie kontenera:
 ```
 docker-compose up
 ```
+---
