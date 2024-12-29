@@ -7,6 +7,6 @@ user_bp = Blueprint("user", __name__)
 @user_bp.route("/profile", methods=["GET"])
 @jwt_required()
 def profile():
-    user_id = get_jwt_identity()["id"]
-    user = User.query.get(user_id)
-    return jsonify({"email": user.email, "role": user.role})
+    auth_user_email = get_jwt_identity()
+    user =  User.query.filter_by(email=auth_user_email).first()
+    return jsonify({"email": auth_user_email, "id": user.id})

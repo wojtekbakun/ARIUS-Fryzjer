@@ -5,11 +5,11 @@ from backend.extensions import db
 
 payment_bp = Blueprint("payment", __name__)
 
-@payment_bp.route("/payments", methods=["POST"])
+@payment_bp.route("/payment", methods=["POST"])
 @jwt_required()
 def create_payment():
     data = request.get_json()
-    user_id = get_jwt_identity()["id"]
+    user_id = get_jwt_identity()
     new_payment = Payment(user_id=user_id, amount=data["amount"], status="pending")
     db.session.add(new_payment)
     db.session.commit()

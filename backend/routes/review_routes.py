@@ -5,11 +5,11 @@ from backend.extensions import db
 
 review_bp = Blueprint("review", __name__)
 
-@review_bp.route("/reviews", methods=["POST"])
+@review_bp.route("/review", methods=["POST"])
 @jwt_required()
 def create_review():
     data = request.get_json()
-    user_id = get_jwt_identity()["id"]
+    user_id = get_jwt_identity()
     new_review = Review(user_id=user_id, service_id=data["service_id"], rating=data["rating"], comment=data["comment"])
     db.session.add(new_review)
     db.session.commit()
