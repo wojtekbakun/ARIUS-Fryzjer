@@ -28,9 +28,9 @@ project-backend/
 
 ## 🛠️ **Instalacja i uruchomienie**
 
-### Uruchomienie lokalne
-
 Backend działa przy uruchomieniu z dockerem, jednak jezeli chcesz edytować pythonowe pliki to musisz pracować na wirtualnym środowisku.
+
+### Uruchomienie lokalne
 
 #### Sklonowanie repozytorium
 ```
@@ -51,7 +51,7 @@ pip install -r requirements.txt
 flask run
 ```
 
-### Uruchomienie z Dockerem
+#### Uruchomienie z Dockerem
 Budowa obrazu dockera:
 ```
 docker-compose build

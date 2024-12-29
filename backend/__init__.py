@@ -1,9 +1,12 @@
 from flask import Flask
 from backend.extensions import db, migrate, jwt, cors
+from backend.routes import register_blueprints  
+from backend.config import Config
+
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_object("backend.config.Config")
+    app.config.from_object(Config)
 
     # Inicjalizacja rozszerzeń
     db.init_app(app)
@@ -11,8 +14,7 @@ def create_app():
     jwt.init_app(app)
     cors.init_app(app)
 
-    # Zarejestruj blueprinty
-    from backend.routes import main_bp
-    app.register_blueprint(main_bp)
+    register_blueprints(app)
+
 
     return app
