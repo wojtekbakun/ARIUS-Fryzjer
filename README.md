@@ -71,13 +71,19 @@ flask db upgrade
 ```
 
 ## Aktualne endpointy
-| Metoda | Endpoint                | Parametry (Body / Query)                                                                                   | Zwraca                                         |
-|--------|-------------------------|-----------------------------------------------------------------------------------------------------------|-----------------------------------------------|
-| POST   | `/auth/register`        | Body: `{ "email": "string", "password": "string" }`                                                        | `{ "message": "User registered successfully" }` |
-| POST   | `/auth/login`           | Body: `{ "email": "string", "password": "string" }`                                                        | `{ "token": "string", "id": "int", "email": "string" }` |
-| GET    | `/user/profile`         | Nagłówek: `Authorization: Bearer <token>`                                                                  | `{ "id": "int", "email": "string" }`          |
-| GET    | `/appointments/services`| Brak                                                                                                       | `[ { "id": "int", "name": "string", "price": "float" }, ... ]` |
-| POST   | `/appointments`         | Body: `{ "user_id": "int", "service_id": "int", "date": "YYYY-MM-DD HH:MM:SS" }`                           | `{ "message": "Appointment created successfully" }` |
-| GET    | `/appointments`         | Nagłówek: `Authorization: Bearer <token>`                                                                  | `[ { "id": "int", "service": "string", "date": "YYYY-MM-DD HH:MM:SS", "status": "string" }, ... ]` |
-| POST   | `/reviews`              | Body: `{ "service_id": "int", "rating": "int", "comment": "string" }`                                      | `{ "message": "Review submitted successfully" }` |
-| POST   | `/payments`             | Body: `{ "user_id": "int", "amount": "float" }`                                                            | `{ "message": "Payment created successfully" }` |
+| Metoda | Endpoint          | Parametry (Body / Query)                                                                                     | Zwraca                                               |
+|--------|-------------------|-------------------------------------------------------------------------------------------------------------|-----------------------------------------------------|
+| POST   | `/auth/register`  | Body: `{ "email": "string", "password": "string" }`                                                          | `{ "message": "User registered successfully" }`     |
+| POST   | `/auth/login`     | Body: `{ "email": "string", "password": "string" }`                                                          | `{ "token": "string", "id": "int", "email": "string" }` |
+| GET    | `/user/profile`   | Nagłówek: `Authorization: Bearer <token>`                                                                    | `{ "id": "int", "email": "string", "street": "string", "street_number": "string", "postal_code": "string", "city": "string", "nip": "string", "company_name": "string", "purchase_date": "YYYY-MM-DD" }` |
+| POST   | `/user/profile`   | Nagłówek: `Authorization: Bearer <token>`, Body: `{ "street": "string", "street_number": "string", "postal_code": "string", "city": "string", "nip": "string", "company_name": "string" }` | `{ "message": "Invoice data updated successfully" }` |
+| GET    | `/appointments/services` | Brak                                                                                                   | `[ { "id": "int", "name": "string", "price": "float" }, ... ]` |
+| POST   | `/appointments/appointment` | Body: `{ "user_id": "int", "service_id": "int", "date": "YYYY-MM-DD HH:MM:SS" }`                      | `{ "message": "Appointment created successfully" }` |
+| GET    | `/appointments`   | Nagłówek: `Authorization: Bearer <token>`                                                                    | `[ { "id": "int", "service": "string", "date": "YYYY-MM-DD HH:MM:SS", "status": "string" }, ... ]` |
+| POST   | `/reviews`        | Body: `{ "service_id": "int", "rating": "int", "comment": "string" }`                                        | `{ "message": "Review submitted successfully" }`    |
+| POST   | `/payments`       | Body: `{ "user_id": "int", "amount": "float" }`                                                              | `{ "message": "Payment created successfully" }`     |
+| POST   | `/employees`      | Body: `{ "first_name": "string", "last_name": "string", "email": "string", "phone": "string" }`              | `{ "message": "Employee created successfully" }`    |
+| GET    | `/employees`      | Brak                                                                                                        | `[ { "id": "int", "first_name": "string", "last_name": "string", "email": "string", "phone": "string" }, ... ]` |
+| GET    | `/employees/<int:id>` | Brak                                                                                                    | `{ "id": "int", "first_name": "string", "last_name": "string", "email": "string", "phone": "string" }` |
+| PUT    | `/employees/<int:id>` | Body: `{ "first_name": "string", "last_name": "string", "email": "string", "phone": "string" }`          | `{ "message": "Employee updated successfully" }`    |
+| DELETE | `/employees/<int:id>` | Brak                                                                                                    | `{ "message": "Employee deleted successfully" }`    |
