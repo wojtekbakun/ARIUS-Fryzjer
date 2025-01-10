@@ -1,0 +1,76 @@
+.profile-reviews {
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.profile-reviews h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: #000;
+}
+
+.profile-reviews ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.profile-reviews li {
+    border-bottom: 1px solid #ddd;
+    padding: 1rem 0;
+}
+
+.profile-reviews li:last-child {
+    border-bottom: none;
+}
+
+.profile-reviews p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    color: #333;
+}
+
+.profile-reviews form {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.profile-reviews label {
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+    color: #333;
+}
+
+.profile-reviews input,
+.profile-reviews select,
+.profile-reviews textarea {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 0.5rem;
+}
+
+.profile-reviews button {
+    padding: 0.8rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    background-color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.profile-reviews button:hover {
+    background-color: #333;
+}

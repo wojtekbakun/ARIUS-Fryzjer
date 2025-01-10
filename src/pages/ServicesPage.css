@@ -1,0 +1,64 @@
+.services-page {
+    padding: 4rem 2rem;
+    background-color: #ffffff;
+    color: #333;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.services-header {
+    margin-bottom: 2rem;
+}
+
+.services-header h2 {
+    font-size: 2.5rem;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 1rem;
+}
+
+.services-header p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+}
+
+.services-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.service-item {
+    background-color: #f8f8f8;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    max-width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.service-item h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.service-description {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+.service-price {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #000;
+}
