@@ -14,7 +14,6 @@ def profile():
     if not user:
         return jsonify({"error": "User not found"}), 404
     
-    # Dane do faktury
     user_data = {
         "email": user.email,
         "id": user.id,
@@ -24,7 +23,6 @@ def profile():
         "city": user.city,
         "nip": user.nip,
         "company_name": user.company_name,
-        "purchase_date": user.created_at.strftime("%Y-%m-%d")  # Data zakupu usługi
     }
     
     return jsonify(user_data)
@@ -47,4 +45,4 @@ def update_user_data():
     user.company_name = data.get("company_name", user.company_name)
 
     db.session.commit()
-    return jsonify({"message": "Invoice data updated successfully"})
+    return jsonify({"message": "Profile data updated successfully"})
