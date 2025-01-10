@@ -6,7 +6,7 @@ from flask_jwt_extended import jwt_required
 employee_bp = Blueprint("employee", __name__)
 
 # Tworzenie nowego pracownika
-@employee_bp.route("/employees", methods=["POST"])
+@employee_bp.route("/employee", methods=["POST"])
 @jwt_required()
 def create_employee():
     data = request.get_json()
@@ -21,7 +21,7 @@ def create_employee():
     return jsonify({"message": "Employee created successfully"}), 201
 
 # Pobieranie listy wszystkich pracowników
-@employee_bp.route("/employees", methods=["GET"])
+@employee_bp.route("/", methods=["GET"])
 @jwt_required()
 def get_employees():
     employees = Employee.query.all()
@@ -38,7 +38,7 @@ def get_employees():
     return jsonify(employees_list), 200
 
 # Pobieranie danych jednego pracownika
-@employee_bp.route("/employees/<int:employee_id>", methods=["GET"])
+@employee_bp.route("/<int:employee_id>", methods=["GET"])
 @jwt_required()
 def get_employee(employee_id):
     employee = Employee.query.get_or_404(employee_id)
@@ -52,7 +52,7 @@ def get_employee(employee_id):
     return jsonify(employee_data), 200
 
 # Aktualizacja danych pracownika
-@employee_bp.route("/employees/<int:employee_id>", methods=["PUT"])
+@employee_bp.route("/<int:employee_id>", methods=["PUT"])
 @jwt_required()
 def update_employee(employee_id):
     employee = Employee.query.get_or_404(employee_id)
@@ -65,7 +65,7 @@ def update_employee(employee_id):
     return jsonify({"message": "Employee updated successfully"}), 200
 
 # Usuwanie pracownika
-@employee_bp.route("/employees/<int:employee_id>", methods=["DELETE"])
+@employee_bp.route("/<int:employee_id>", methods=["DELETE"])
 @jwt_required()
 def delete_employee(employee_id):
     employee = Employee.query.get_or_404(employee_id)
