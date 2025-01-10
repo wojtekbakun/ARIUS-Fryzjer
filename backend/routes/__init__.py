@@ -6,6 +6,7 @@ from .user_routes import user_bp
 from .appointment_routes import appointment_bp
 from .review_routes import review_bp
 from .payment_routes import payment_bp
+from .employee_routes import employee_bp
 
 # Opcjonalne: agregowanie wszystkich blueprintów w jednym miejscu (do automatycznej rejestracji)
 all_blueprints = [
@@ -14,6 +15,7 @@ all_blueprints = [
     (appointment_bp, "/appointments"),
     (review_bp, "/reviews"),
     (payment_bp, "/payments"),
+    (employee_bp, "/employees")
 ]
 
 def register_blueprints(app):

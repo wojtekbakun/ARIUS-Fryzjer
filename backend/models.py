@@ -7,6 +7,12 @@ class User(db.Model):
     password = db.Column(db.String(200), nullable=False)
     role = db.Column(db.String(50), default="user")  # user, admin
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    street = db.Column(db.String(150), nullable=True)  # Ulica
+    street_number = db.Column(db.String(20), nullable=True)  # Numer ulicy
+    postal_code = db.Column(db.String(20), nullable=True)  # Kod pocztowy
+    city = db.Column(db.String(100), nullable=True)  # Miejscowość
+    nip = db.Column(db.String(20), nullable=True)  # NIP
+    company_name = db.Column(db.String(200), nullable=True)  # Nazwa firmy/instytucji
 
 class Service(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -34,3 +40,10 @@ class Payment(db.Model):
     amount = db.Column(db.Float, nullable=False)
     status = db.Column(db.String(50), default="pending")  # pending, completed, failed
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+class Employee(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(100), nullable=False)  
+    last_name = db.Column(db.String(100), nullable=False)  
+    email = db.Column(db.String(120), unique=True, nullable=False)  
+    phone = db.Column(db.String(20), nullable=True)  
