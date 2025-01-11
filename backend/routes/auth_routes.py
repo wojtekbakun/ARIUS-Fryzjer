@@ -6,11 +6,29 @@ from backend.extensions import db
 
 auth_bp = Blueprint("auth", __name__)
 
+
 @auth_bp.route("/register", methods=["POST"])
 def register():
     data = request.get_json()
+
+    # Walidacja wymaganych pól
+    if not data.get("email") or not data.get("password"):
+        return jsonify({"error": "Email and password are required"}), 400
+
     hashed_password = generate_password_hash(data["password"])
-    new_user = User(email=data["email"], password=hashed_password)
+
+    # Tworzenie nowego użytkownika z dodatkowymi danymi
+    new_user = User(
+        email=data["email"],
+        password=hashed_password,
+        street=data.get("street"),
+        street_number=data.get("street_number"),
+        postal_code=data.get("postal_code"),
+        city=data.get("city"),
+        nip=data.get("nip"),
+        company_name=data.get("company_name")
+    )
+
     db.session.add(new_user)
     db.session.commit()
     return jsonify({"message": "User registered successfully"}), 201

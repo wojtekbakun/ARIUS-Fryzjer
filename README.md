@@ -63,10 +63,10 @@ flask db upgrade
 ```
 
 ## Aktualne endpointy
-| Metoda | Endpoint                | Parametry (Body / Query)                                                                                   | Zwraca                                         |
-|--------|-------------------------|-----------------------------------------------------------------------------------------------------------|-----------------------------------------------|
-| POST   | `/auth/register`        | Body: `{ "email": "string", "password": "string" }`                                                        | `{ "message": "User registered successfully" }` |
-| POST   | `/auth/login`           | Body: `{ "email": "string", "password": "string" }`                                                        | `{ "token": "string", "id": "int", "email": "string" }` |
+| Metoda | Endpoint       | Parametry (Body / Query)                                                                                                                                             | Zwraca                                           |
+|--------|----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------|
+| POST   | `/auth/register` | Body: `{ "email": "string", "password": "string", "street": "string", "street_number": "string", "postal_code": "string", "city": "string", "nip": "string", "company_name": "string" }` | `{ "message": "User registered successfully" }` |
+| POST   | `/auth/login`    | Body: `{ "email": "string", "password": "string" }`                                                                                                                | `{ "token": "string", "email": "string" }` |
 | GET    | `/user/profile`         | Nagłówek: `Authorization: Bearer <token>`                                                                  | `{ "id": "int", "email": "string", "street": "string", "street_number": "string", "postal_code": "string", "city": "string", "nip": "string", "company_name": "string", "purchase_date": "YYYY-MM-DD" }` |
 | POST   | `/user/profile`         | Nagłówek: `Authorization: Bearer <token>`, Body: `{ "street": "string", "street_number": "string", "postal_code": "string", "city": "string", "nip": "string", "company_name": "string" }` | `{ "message": "Invoice data updated successfully" }` |
 | GET    | `/appointments/services`| Brak                                                                                                       | `[ { "id": "int", "name": "string", "price": "float" }, ... ]` |
