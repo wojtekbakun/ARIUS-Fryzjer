@@ -15,8 +15,10 @@ def profile():
         return jsonify({"error": "User not found"}), 404
     
     user_data = {
-        "email": user.email,
         "id": user.id,
+        "email": user.email,
+        "first_name": user.first_name,
+        "last_name": user.last_name,
         "street": user.street,
         "street_number": user.street_number,
         "postal_code": user.postal_code,
@@ -37,6 +39,8 @@ def update_user_data():
         return jsonify({"error": "User not found"}), 404
 
     data = request.get_json()
+    user.first_name = data.get("first_name", user.first_name)
+    user.last_name = data.get("last_name", user.last_name)
     user.street = data.get("street", user.street)
     user.street_number = data.get("street_number", user.street_number)
     user.postal_code = data.get("postal_code", user.postal_code)

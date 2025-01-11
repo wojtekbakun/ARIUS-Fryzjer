@@ -6,7 +6,6 @@ from backend.extensions import db
 
 auth_bp = Blueprint("auth", __name__)
 
-
 @auth_bp.route("/register", methods=["POST"])
 def register():
     data = request.get_json()
@@ -21,6 +20,8 @@ def register():
     new_user = User(
         email=data["email"],
         password=hashed_password,
+        first_name=data.get("first_name"),
+        last_name=data.get("last_name"),
         street=data.get("street"),
         street_number=data.get("street_number"),
         postal_code=data.get("postal_code"),

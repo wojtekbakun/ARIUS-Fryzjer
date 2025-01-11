@@ -7,12 +7,14 @@ class User(db.Model):
     password = db.Column(db.String(200), nullable=False)
     role = db.Column(db.String(50), default="user")  # user, admin
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    street = db.Column(db.String(150), nullable=True)  # Ulica
-    street_number = db.Column(db.String(20), nullable=True)  # Numer ulicy
-    postal_code = db.Column(db.String(20), nullable=True)  # Kod pocztowy
-    city = db.Column(db.String(100), nullable=True)  # Miejscowość
-    nip = db.Column(db.String(20), nullable=True)  # NIP
-    company_name = db.Column(db.String(200), nullable=True)  # Nazwa firmy/instytucji
+    first_name = db.Column(db.String(100), nullable=True)
+    last_name = db.Column(db.String(100), nullable=True)
+    street = db.Column(db.String(150), nullable=True)      # Ulica
+    street_number = db.Column(db.String(20), nullable=True) # Numer ulicy
+    postal_code = db.Column(db.String(20), nullable=True)   # Kod pocztowy
+    city = db.Column(db.String(100), nullable=True)         # Miejscowość
+    nip = db.Column(db.String(20), nullable=True)           # NIP
+    company_name = db.Column(db.String(200), nullable=True) # Nazwa firmy/instytucji
 
 class Service(db.Model):
     id = db.Column(db.Integer, primary_key=True)
