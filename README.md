@@ -53,17 +53,9 @@ Aplikacja będzie dostępna pod adresem: http://localhost:8080.
 ## Migracje bazy danych
 
 Aby zainicjalizować lub zaktualizować bazę danych, wykonaj następujące kroki:
+### 1. Wykonaj migracje
 
-### 1. Wejdź do kontenera backendu
-
-Uruchom:
-```
-docker exec -it flask-app-1 sh
-```
-
-### 2. Wykonaj migracje
-
-Wewnątrz kontenera uruchom następujące komendy:
+Uruchom następujące komendy w venv:
 ```
 flask db init
 flask db migrate -m "Initial migration"
