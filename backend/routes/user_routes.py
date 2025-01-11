@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from backend.models import User
-from extensions import db
+from backend.extensions import db
 
 user_bp = Blueprint("user", __name__)
 
