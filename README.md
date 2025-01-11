@@ -61,23 +61,315 @@ flask db init
 flask db migrate -m "Initial migration"
 flask db upgrade
 ```
-
 ## Aktualne endpointy
-| Metoda | Endpoint       | Parametry (Body / Query)                                                                                                                                             | Zwraca                                           |
-|--------|----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------|
-| POST   | `/auth/register` | Body: `{ "email": "string", "password": "string", "street": "string", "street_number": "string", "postal_code": "string", "city": "string", "nip": "string", "company_name": "string" }` | `{ "message": "User registered successfully" }` |
-| POST   | `/auth/login`    | Body: `{ "email": "string", "password": "string" }`                                                                                                                | `{ "token": "string", "email": "string" }` |
-| GET    | `/user/profile`         | Nagłówek: `Authorization: Bearer <token>`                                                                  | `{ "id": "int", "email": "string", "street": "string", "street_number": "string", "postal_code": "string", "city": "string", "nip": "string", "company_name": "string", "purchase_date": "YYYY-MM-DD" }` |
-| POST   | `/user/profile`         | Nagłówek: `Authorization: Bearer <token>`, Body: `{ "street": "string", "street_number": "string", "postal_code": "string", "city": "string", "nip": "string", "company_name": "string" }` | `{ "message": "Invoice data updated successfully" }` |
-| GET    | `/appointments/services`| Brak                                                                                                       | `[ { "id": "int", "name": "string", "price": "float" }, ... ]` |
-| POST   | `/appointments/appointment` | Body: `{ "user_id": "int", "service_id": "int", "date": "YYYY-MM-DD HH:MM:SS" }`                          | `{ "message": "Appointment created successfully" }` |
-| GET    | `/appointments`         | Nagłówek: `Authorization: Bearer <token>`                                                                  | `[ { "id": "int", "service": "string", "date": "YYYY-MM-DD HH:MM:SS", "status": "string" }, ... ]` |
-| POST   | `/reviews/review`              | Body: `{ "service_id": "int", "rating": "int", "comment": "string" }`                                      | `{ "message": "Review submitted successfully" }` |
-| POST   | `/payments/payment`             | Body: `{ "user_id": "int", "amount": "float" }`                                                            | `{ "message": "Payment created" }`            |
-| GET    | `payments/invoice-data`         | Nagłówek: `Authorization: Bearer <token>`                                                                  | `{ "id": "int", "email": "string", "street": "string", "street_number": "string", "postal_code": "string", "city": "string", "nip": "string", "company_name": "string", "purchase_date": "YYYY-MM-DD" }` |
-| POST   | `payments/invoice-data`         | Nagłówek: `Authorization: Bearer <token>`, Body: `{ "street": "string", "street_number": "string", "postal_code": "string", "city": "string", "nip": "string", "company_name": "string" }` | `{ "message": "Invoice data updated successfully" }` |
-| POST   | `/employees/employee`            | Body: `{ "first_name": "string", "last_name": "string", "email": "string", "phone": "string" }`              | `{ "message": "Employee created successfully" }` |
-| GET    | `/employees`            | Brak                                                                                                        | `[ { "id": "int", "first_name": "string", "last_name": "string", "email": "string", "phone": "string" }, ... ]` |
-| GET    | `/employees/<int:id>`    | Brak                                                                                                        | `{ "id": "int", "first_name": "string", "last_name": "string", "email": "string", "phone": "string" }` |
-| PUT    | `/employees/<int:id>`    | Body: `{ "first_name": "string", "last_name": "string", "email": "string", "phone": "string" }`              | `{ "message": "Employee updated successfully" }` |
-| DELETE | `/employees/<int:id>`    | Brak                                                                                                        | `{ "message": "Employee deleted successfully" }` |
+
+| Metoda | Endpoint                                | Parametry (Body / Query)                                                                                                                                         | Zwraca                                                                                             |
+|--------|-----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| **POST**   | `/auth/register`                         | Body:  
+```json
+{
+  "email": "string",
+  "password": "string",
+  "first_name": "string",
+  "last_name": "string",
+  "street": "string",
+  "street_number": "string",
+  "postal_code": "string",
+  "city": "string",
+  "nip": "string",
+  "company_name": "string"
+}
+```                                                                                                                                                         |  
+```json
+{
+  "message": "User registered successfully"
+}
+```                                                                                           |
+| **POST**   | `/auth/login`                            | Body:  
+```json
+{
+  "email": "string",
+  "password": "string"
+}
+```                                                                                                                                                                    |  
+```json
+{
+  "token": "string",
+  "email": "string"
+}
+```                                                                                           |
+| **GET**    | `/user/profile`                          | Nagłówek: `Authorization: Bearer <token>`                                                                                                                                                               |  
+```json
+{
+  "id": "int",
+  "email": "string",
+  "first_name": "string",
+  "last_name": "string",
+  "street": "string",
+  "street_number": "string",
+  "postal_code": "string",
+  "city": "string",
+  "nip": "string",
+  "company_name": "string",
+  "purchase_date": "YYYY-MM-DD"
+}
+```                                                                                                   |
+| **POST**   | `/user/profile`                          | Nagłówek: `Authorization: Bearer <token>`  
+Body:  
+```json
+{
+  "first_name": "string",
+  "last_name": "string",
+  "street": "string",
+  "street_number": "string",
+  "postal_code": "string",
+  "city": "string",
+  "nip": "string",
+  "company_name": "string"
+}
+```                                                                                                                                                     |  
+```json
+{
+  "message": "Profile data updated successfully"
+}
+```                                                                                           |
+| **GET**    | `/appointments/services`                 | Brak                                                                                                                                                                                                      |  
+```json
+[
+  {
+    "id": "int",
+    "name": "string",
+    "price": "float"
+  },
+  ...
+]
+```                                                                                                           |
+| **POST**   | `/appointments/appointment`             | Body:  
+```json
+{
+  "user_id": "int",
+  "service_id": "int",
+  "date": "YYYY-MM-DD HH:MM:SS"
+}
+```                                                                                                                                                                      |  
+```json
+{
+  "message": "Appointment created successfully"
+}
+```                                                                                     |
+| **GET**    | `/appointments`                        | Nagłówek: `Authorization: Bearer <token>`                                                                                                                                                               |  
+```json
+[
+  {
+    "id": "int",
+    "service": "int", 
+    "date": "YYYY-MM-DD HH:MM:SS",
+    "status": "string"
+  },
+  ...
+]
+```                                                                                                       |
+| **PUT**    | `/appointments/appointment/<int:id>`    | Nagłówek: `Authorization: Bearer <token>`  
+Body (opcjonalne pola do aktualizacji):  
+```json
+{
+  "service_id": "int",
+  "date": "YYYY-MM-DD HH:MM:SS",
+  "status": "string"
+}
+```                                                                                                                                                     |  
+```json
+{
+  "message": "Appointment updated successfully"
+}
+```                                                                                     |
+| **DELETE** | `/appointments/appointment/<int:id>`     | Nagłówek: `Authorization: Bearer <token>`                                                                                                                                                              |  
+```json
+{
+  "message": "Appointment deleted successfully"
+}
+```                                                                                           |
+| **POST**   | `/reviews/review`                       | Body:  
+```json
+{
+  "service_id": "int",
+  "rating": "int",
+  "comment": "string"
+}
+```                                                                                                                                                                    |  
+```json
+{
+  "message": "Review submitted successfully"
+}
+```                                                                                     |
+| **POST**   | `/payments/payment`                     | Body:  
+```json
+{
+  "user_id": "int",
+  "amount": "float"
+}
+```                                                                                                                                                                     |  
+```json
+{
+  "message": "Payment created"
+}
+```                                                                                   |
+| **GET**    | `/payments/invoice-data`                | Nagłówek: `Authorization: Bearer <token>`                                                                                                                                                               |  
+```json
+{
+  "id": "int",
+  "email": "string",
+  "street": "string",
+  "street_number": "string",
+  "postal_code": "string",
+  "city": "string",
+  "nip": "string",
+  "company_name": "string",
+  "purchase_date": "YYYY-MM-DD"
+}
+```                                                                                                   |
+| **POST**   | `/payments/invoice-data`                | Nagłówek: `Authorization: Bearer <token>`  
+Body:  
+```json
+{
+  "street": "string",
+  "street_number": "string",
+  "postal_code": "string",
+  "city": "string",
+  "nip": "string",
+  "company_name": "string"
+}
+```                                                                                                                                                     |  
+```json
+{
+  "message": "Invoice data updated successfully"
+}
+```                                                                                           |
+| **POST**   | `/employees/employee`                   | Body:  
+```json
+{
+  "first_name": "string",
+  "last_name": "string",
+  "email": "string",
+  "phone": "string",
+  "service_ids": ["int", ...]  // (opcjonalnie, jeśli chcesz przypisywać usługi)
+}
+```                                                                                                                                                     |  
+```json
+{
+  "message": "Employee created successfully"
+}
+```                                                                                   |
+| **GET**    | `/employees`                            | Brak                                                                                                                                                                                                      |  
+```json
+[
+  {
+    "id": "int",
+    "first_name": "string",
+    "last_name": "string",
+    "email": "string",
+    "phone": "string",
+    "services": [
+      {
+        "id": "int",
+        "name": "string",
+        "price": "float"
+      }
+    ]
+  },
+  ...
+]
+```                                                                                                       |
+| **GET**    | `/employees/<int:id>`                   | Brak                                                                                                                                                                                                      |  
+```json
+{
+  "id": "int",
+  "first_name": "string",
+  "last_name": "string",
+  "email": "string",
+  "phone": "string",
+  "services": [
+    {
+      "id": "int",
+      "name": "string",
+      "price": "float"
+    }
+  ]
+}
+```                                                                                                       |
+| **PUT**    | `/employees/<int:id>`                   | Body:  
+```json
+{
+  "first_name": "string",
+  "last_name": "string",
+  "email": "string",
+  "phone": "string",
+  "service_ids": ["int", ...] // (przypisanie nowych usług)
+}
+```                                                                                                                                                     |  
+```json
+{
+  "message": "Employee updated successfully"
+}
+```                                                                                   |
+| **DELETE** | `/employees/<int:id>`                   | Brak                                                                                                                                                                                                      |  
+```json
+{
+  "message": "Employee deleted successfully"
+}
+```                                                                                                       |
+| **POST**   | `/services`                              | Nagłówek: `Authorization: Bearer <token>`  
+Body:  
+```json
+{
+  "name": "string",
+  "description": "string",
+  "price": "float"
+}
+```                                                                                                                                                     |  
+```json
+{
+  "message": "Service created successfully"
+}
+```                                                                                   |
+| **GET**    | `/services`                              | Nagłówek: `Authorization: Bearer <token>`                                                                                                                                                               |  
+```json
+[
+  {
+    "id": "int",
+    "name": "string",
+    "description": "string",
+    "price": "float"
+  },
+  ...
+]
+```                                                                                                       |
+| **GET**    | `/services/<int:id>`                     | Nagłówek: `Authorization: Bearer <token>`                                                                                                                                                               |  
+```json
+{
+  "id": "int",
+  "name": "string",
+  "description": "string",
+  "price": "float"
+}
+```                                                                                           |
+| **PUT**    | `/services/<int:id>`                     | Nagłówek: `Authorization: Bearer <token>`  
+Body:  
+```json
+{
+  "name": "string",
+  "description": "string",
+  "price": "float"
+}
+```                                                                                                                                                     |  
+```json
+{
+  "message": "Service updated successfully"
+}
+```                                                                                   |
+| **DELETE** | `/services/<int:id>`                     | Nagłówek: `Authorization: Bearer <token>`                                                                                                                                                               |  
+```json
+{
+  "message": "Service deleted successfully"
+}
+```                                                                                           |
