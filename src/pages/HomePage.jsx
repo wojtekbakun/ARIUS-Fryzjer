@@ -1,4 +1,4 @@
-import React from 'react';
+import 'react';
 import './HomePage.css';
 
 const HomePage = () => {
@@ -10,8 +10,8 @@ const HomePage = () => {
         },
         {
             imgSrc: '/img2.jpg',
-            title: 'INKLUZYWNOŚĆ',
-            description: 'Zgodnie z naszym przesłaniem "Bądź sobą" chcemy, aby każdy czuł się komfortowo i bezpiecznie. Nasz cennik jest niezależny od płci.',
+            title: 'ZAANGAŻOWANIE',
+            description: 'Zgodnie z naszym przesłaniem "Zaangażuj się", dążymy do tego, aby każdy klient czuł się wyjątkowo i otrzymał spersonalizowaną opiekę.',
         },
         {
             imgSrc: '/img3.jpg',
@@ -31,7 +31,7 @@ const HomePage = () => {
         {
             imgSrc: '/img6.jpg',
             title: 'PROFESJONALIZM',
-            description: 'Stawiamy na najwyższą jakość usług, aby spełnić Twoje oczekiwania.',
+            description: 'Stawiamy na najwyższą jakość usług i naszych produktów, aby spełnić Twoje oczekiwania.',
         },
     ];
 
@@ -42,7 +42,7 @@ const HomePage = () => {
                 <div className="hero-content">
                     <h1>fryzjerski<sup>®</sup></h1>
                     <p>Profesjonalne usługi fryzjerskie na najwyższym poziomie</p>
-                    <a className="cta-button" href="#appointment">Umów wizytę</a>
+                    <a className="cta-button" href="appointment">Umów wizytę</a>
                 </div>
             </section>
 

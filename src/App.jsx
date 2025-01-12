@@ -1,17 +1,24 @@
 import 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header';
-import AboutPage from './pages/AboutPage.jsx';
 import Footer from './components/Footer';
-import ServicesPage from "./pages/ServicesPage.jsx";
+import AboutPage from './pages/AboutPage.jsx';
+import ServicesPage from './pages/ServicesPage.jsx';
 import LoginPage from './pages/LoginPage';
 import ReviewsPage from './pages/ReviewsPage.jsx';
 import RegisterPage from './pages/RegisterPage';
 import HomePage from './pages/HomePage';
-import ProfilePage from './pages/ProfilePage.jsx'; // Import ProfilePage
+import ProfilePage from './pages/ProfilePage.jsx';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import AppointmentPage from './pages/AppointmentPage';
 import HairdressersPage from './pages/HairdressersPage';
+
+// Komponent chroniący trasy
+const ProtectedRoute = ({ children }) => {
+    const token = localStorage.getItem('token');
+    return token ? children : <Navigate to="/login" />;
+};
+
 const App = () => {
     return (
         <Router>
@@ -23,10 +30,26 @@ const App = () => {
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/reviews" element={<ReviewsPage />} />
-                <Route path="/profile" element={<ProfilePage />} /> {/* Nowa ścieżka */}
                 <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-                <Route path="/appointment" element={<AppointmentPage />} />
+                <Route
+                    path="/profile"
+                    element={
+                        <ProtectedRoute>
+                            <ProfilePage />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/appointment"
+                    element={
+                        <ProtectedRoute>
+                            <AppointmentPage />
+                        </ProtectedRoute>
+                    }
+                />
                 <Route path="/hairdressers" element={<HairdressersPage />} />
+                {/* Dodaj inne trasy tutaj */}
+                <Route path="*" element={<Navigate to="/" />} />
             </Routes>
             <Footer />
         </Router>

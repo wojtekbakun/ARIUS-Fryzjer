@@ -1,136 +1,75 @@
-/* Styl głównego kontenera nagłówka */
 .header {
-    display: flex;
-    justify-content: space-between; /* Logo po lewej, menu po prawej */
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: #ffffff; /* Tło nagłówka w kolorze białym */
-    border-bottom: 1px solid #ddd;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
     width: 100%;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtelny cień */
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
 }
 
-/* Styl logo */
+/* Kontener ograniczający szerokość i wycentrowujący zawartość */
+.header-container {
+    max-width: 1200px;       /* szerokość, do której dążysz (np. 1200px) */
+    margin: 0 auto;          /* auto - by wycentrować w poziomie */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;      /* wewnętrzne wcięcia dla „oddechu” */
+}
+
+/* Logo i link w logo */
 .logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #000;
+    display: flex;
+    align-items: center;
 }
 
 .logo-link {
+    font-size: 2rem;
+    font-weight: bold;
     text-decoration: none;
     color: #000;
-    transition: color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.logo-link:hover {
-    color: #333; /* Delikatnie ciemniejszy czarny */
-    box-shadow: 0 0 8px rgba(180, 120, 60, 0.6); /* Złote subtelne podświetlenie */
-}
-
-.logo-link:focus,
-.logo-link:active {
-    outline: none;
-    box-shadow: 0 0 8px rgba(180, 120, 60, 0.8); /* Intensywniejszy złoty */
-}
-
-.logo-link sup {
-    font-size: 0.8rem;
-    vertical-align: super; /* "®" w górnym indeksie */
-    margin-left: 0.2rem;
-    color: #000;
-}
-
-/* Styl nawigacji */
+/* Nawigacja */
 .nav {
     display: flex;
     align-items: center;
-    gap: 2rem;
-    margin-right: 2rem; /* Przestrzeń od prawej krawędzi */
 }
 
-/* Styl listy nawigacyjnej */
 .nav-list {
-    display: flex;
     list-style: none;
-    gap: 2rem; /* Odstępy między linkami */
-    margin: 0;
+    display: flex;
+    gap: 1.5rem;      /* odstępy między elementami li */
     padding: 0;
+    margin: 0;
 }
 
 .nav-list li {
-    margin: 0;
+    display: flex;
+    align-items: center;
 }
 
-/* Styl linków w menu */
-.nav a {
+.nav-list li a {
     text-decoration: none;
-    color: #000; /* Czarny kolor tekstu */
-    font-size: 1.2rem; /* Czytelny rozmiar tekstu */
-    font-weight: 600; /* Wzmocniona czcionka */
-    padding: 0.5rem 1rem; /* Przestrzenie wokół linków */
-    border-radius: 5px;
-    transition: color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; /* Dodano box-shadow */
-}
-
-.nav a:hover {
-    color: #fff;
-    background-color: #000; /* Czarny prostokąt */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Cień przy najechaniu */
-}
-
-.nav a:focus,
-.nav a:active {
-    outline: none;
-    box-shadow: 0 0 8px #D4AF37; /* Złote podświetlenie */
-}
-
-/* Dodanie przestrzeni między menu a prawą krawędzią */
-.nav-list {
-    margin-right: 2rem;
-}
-
-/* Styl przycisku "Umów wizytę" */
-.cta-button {
-    text-decoration: none;
-    color: #fff; /* Biały tekst */
-    background-color: #000; /* Czarny prostokąt */
-    padding: 0.5rem 1.5rem;
-    border-radius: 5px;
+    color: #000;
     font-size: 1.2rem;
-    font-weight: 600;
-    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.nav-list li a:hover {
+    color: #555;
+}
+
+/* Przycisk CTA */
+.cta-button {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-align: center;
+    transition: background-color 0.2s, box-shadow 0.2s;
 }
 
 .cta-button:hover {
-    transform: scale(1.1);
-    background-color: #D4AF37; /* Złoty kolor po najechaniu */
-    color: #fff; /* Biały tekst */
-}
-
-.cta-button:focus,
-.cta-button:active {
-    outline: none;
-    box-shadow: 0 0 10px #D4AF37;
-}
-
-/* Responsywność */
-@media (max-width: 768px) {
-    .header {
-        flex-direction: column;
-        padding: 1rem;
-    }
-
-    .nav {
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .cta-button {
-        margin-top: 1rem;
-    }
+    background-color: #efd363;
+    box-shadow: 0 4px 8px rgba(212, 175, 55, 0.6);
 }

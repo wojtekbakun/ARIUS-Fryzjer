@@ -1,0 +1,71 @@
+.visits-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.visits-page h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.tab {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ddd;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.tab.active {
+    background-color: #333;
+    color: #fff;
+}
+
+.tab:hover {
+    background-color: #aaa;
+}
+
+.visits-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.visit-card {
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.visit-card h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.visit-card p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.no-visits {
+    text-align: center;
+    color: #888;
+    font-size: 16px;
+}

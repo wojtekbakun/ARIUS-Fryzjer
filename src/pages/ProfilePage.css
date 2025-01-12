@@ -1,39 +1,108 @@
 .profile-page {
-    padding: 3rem 2rem;
-    font-family: 'Playfair Display', serif;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
     color: #333;
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 900px;
-    margin: 0 auto;
 }
 
-.profile-page h1 {
+h1 {
     text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    color: #000;
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 1rem;
+    margin-bottom: 20px;
 }
 
 .profile-nav {
     display: flex;
     justify-content: space-around;
-    margin-bottom: 2rem;
+    margin-bottom: 20px;
 }
 
 .profile-nav button {
-    padding: 0.8rem 2rem;
-    font-size: 1rem;
+    padding: 10px;
+    background-color: #ddd;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.profile-nav button.active {
+    background-color: #333;
+    color: #fff;
+}
+
+.profile-data {
+    padding: 10px;
+    background: #fff;
+    border-radius: 8px;
+}
+
+.edit-form input {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px;
+    width: 100%;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.edit-form input {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.edit-form button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.edit-form button:hover {
+    background-color: #0056b3;
+}
+
+.profile-nav {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.profile-nav button {
+    flex: 1;
+    padding: 10px 20px;
+    margin: 0 5px;
+    font-size: 16px;
     font-weight: bold;
-    color: #000;
-    background-color: #fff;
-    border: 2px solid #ddd;
+    color: #555;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
     border-radius: 5px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .profile-nav button.active {
@@ -43,31 +112,6 @@
 }
 
 .profile-nav button:hover {
-    background-color: #333;
-    color: #fff;
-}
-
-.profile-content {
-    padding: 2rem;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.logout-button {
-    margin-top: 2rem;
-    display: block;
-    padding: 1rem 2rem;
-    font-size: 1rem;
-    font-weight: bold;
-    color: #fff;
-    background-color: #000;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.logout-button:hover {
-    background-color: #333;
+    background-color: #ddd;
+    color: #000;
 }

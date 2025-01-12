@@ -59,9 +59,9 @@
 
 .footer-section.socials a {
     display: inline-block;
-    margin-right: 1rem; /* Odstęp między linkami */
+    margin-right: 1rem;
 }
 
 .footer-section.socials a:last-child {
-    margin-right: 0; /* Usuń odstęp po ostatnim elemencie */
+    margin-right: 0;
 }

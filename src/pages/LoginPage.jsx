@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+// src/pages/LoginPage.jsx
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from '../api/axios';
+import apiClient from '../api/axios'; // Używamy skonfigurowanego apiClient
 
 const LoginPage = () => {
     const [formData, setFormData] = useState({ email: '', password: '' });
@@ -16,18 +17,30 @@ const LoginPage = () => {
         e.preventDefault();
         setError('');
         try {
-            const response = await axios.post('/auth/login', formData);
-            localStorage.setItem('token', response.data.token); // Zapisanie tokenu w localStorage
-            navigate('/profile'); // Przekierowanie na profil
+            // Wysyłamy tylko email i password do /auth/login
+            const payload = {
+                email: formData.email,
+                password: formData.password,
+            };
+
+            const response = await apiClient.post('/auth/login', payload);
+
+            // Zapisanie tokenu w localStorage
+            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('email', response.data.email);
+
+            // Przekierowanie na stronę profilu po zalogowaniu
+            navigate('/profile');
         } catch (err) {
+            // Obsługa błędów logowania
             setError(err.response?.data?.message || 'Błąd logowania. Sprawdź dane i spróbuj ponownie.');
         }
     };
 
     return (
-        <div style={{padding: '2rem', maxWidth: '400px', margin: '0 auto'}}>
+        <div style={{ padding: '2rem', maxWidth: '400px', margin: '0 auto' }}>
             <h2>Logowanie</h2>
-            {error && <p style={{color: 'red'}}>{error}</p>}
+            {error && <p style={{ color: 'red' }}>{error}</p>}
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>Email:</label>
@@ -37,7 +50,7 @@ const LoginPage = () => {
                         value={formData.email}
                         onChange={handleInputChange}
                         required
-                        style={{padding: '0.5rem', width: '100%'}}
+                        style={{ padding: '0.5rem', width: '100%' }}
                     />
                 </div>
                 <div>
@@ -48,7 +61,7 @@ const LoginPage = () => {
                         value={formData.password}
                         onChange={handleInputChange}
                         required
-                        style={{padding: '0.5rem', width: '100%'}}
+                        style={{ padding: '0.5rem', width: '100%' }}
                     />
                 </div>
                 <button
@@ -66,7 +79,7 @@ const LoginPage = () => {
                     Zaloguj się
                 </button>
             </form>
-            <p style={{marginTop: '1rem', textAlign: 'center'}}>
+            <p style={{ marginTop: '1rem', textAlign: 'center' }}>
                 Nie masz konta?{' '}
                 <button
                     onClick={() => navigate('/register')}
@@ -81,7 +94,6 @@ const LoginPage = () => {
                     Zarejestruj się
                 </button>
             </p>
-
         </div>
     );
 };
