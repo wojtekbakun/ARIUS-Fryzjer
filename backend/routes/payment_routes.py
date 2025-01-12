@@ -3,6 +3,8 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from backend.models import Payment, User
 from backend.extensions import db
 from datetime import datetime
+from backend.faktury.send_invoice import send_invoice_to_customer
+
 
 payment_bp = Blueprint("payment", __name__)
 
@@ -112,3 +114,31 @@ def get_invoices():
         })
 
     return jsonify(invoices), 200
+
+@payment_bp.route("/send-invoice/<int:payment_id>", methods=["POST"])
+@jwt_required()
+def send_invoice_endpoint(payment_id):
+    user_email = get_jwt_identity()
+    print(f"User email from token: {user_email}")  # Dodaj log
+
+    user = User.query.filter_by(email=user_email).first()
+    if not user:
+        print("User not found.")  # Dodaj log
+        return jsonify({"error": "User not found."}), 404
+
+    payment = Payment.query.filter_by(id=payment_id).first()
+    if not payment:
+        print("Payment not found.")  # Dodaj log
+        return jsonify({"error": "Payment not found."}), 404
+
+    try:
+        print(f"Calling send_invoice_to_customer for email: {user.email}")  # Dodaj log
+        send_invoice_to_customer(user_email=user.email)
+
+        payment.invoice_sent = True
+        db.session.commit()
+
+        return jsonify({"message": "Invoice sent successfully"}), 200
+    except Exception as e:
+        print(f"Error in endpoint: {e}")  # Dodaj log
+        return jsonify({"error": f"An error occurred: {str(e)}"}), 500

@@ -5,7 +5,7 @@ from fpdf import FPDF
 import requests
 
 # Import danych firmy
-from company_data import COMPANY_DATA
+from backend.faktury.company_data import COMPANY_DATA
 
 
 def login_and_get_token():
