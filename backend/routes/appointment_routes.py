@@ -27,18 +27,40 @@ def create_appointment():
 @appointment_bp.route("/", methods=["GET"])
 @jwt_required()
 def get_appointments():
+    """
+    Zwraca wszystkie wizyty zalogowanego użytkownika.
+    """
     user_id = get_jwt_identity()
     appointments = Appointment.query.filter_by(user_id=user_id).all()
     
     return jsonify([
         {
             "id": a.id,
-            "service": a.service_id,
-            "date": a.date.strftime("%Y-%m-%d %H:%M:%S"),  # formatowanie daty
+            "service_id": a.service_id,
+            "date": a.date.strftime("%Y-%m-%d %H:%M:%S"),
             "status": a.status
-        } 
+        }
         for a in appointments
     ])
+
+@appointment_bp.route("/all", methods=["GET"])
+@jwt_required()
+def get_all_appointments():
+    """
+    Zwraca wszystkie wizyty (terminy) wszystkich użytkowników.
+    """
+    appointments = Appointment.query.all()
+    
+    return jsonify([
+        {
+            "id": a.id,
+            "user_id": a.user_id,
+            "service_id": a.service_id,
+            "date": a.date.strftime("%Y-%m-%d %H:%M:%S"),
+            "status": a.status
+        }
+        for a in appointments
+    ]), 200
 
 # Edycja wizyty
 @appointment_bp.route("/<int:appointment_id>", methods=["PUT"])
