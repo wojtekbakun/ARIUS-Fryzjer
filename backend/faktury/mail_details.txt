@@ -1,0 +1,2 @@
+adres_nadawcy="ariusz@buziaczek.pl"
+haslo="Ariuszek123A"
