@@ -46,8 +46,14 @@ class Appointment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     service_id = db.Column(db.Integer, db.ForeignKey("service.id"), nullable=False)
+    employee_id = db.Column(db.Integer, db.ForeignKey("employee.id"), nullable=True)  # Przypisany pracownik
     date = db.Column(db.DateTime, nullable=False)
     status = db.Column(db.String(50), default="scheduled")  # scheduled, completed, canceled
+
+    # Relacje
+    user = db.relationship("User", backref="appointments")
+    service = db.relationship("Service", backref="appointments")
+    employee = db.relationship("Employee", backref="appointments")  # Relacja do pracownika
 
 class Review(db.Model):
     __tablename__ = "review"
