@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Spinner dla usług -->
+    <Spinner
+        android:id="@+id/serviceSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:spinnerMode="dropdown"
+        android:prompt="@string/select_service" />
+
+    <!-- Spinner dla fryzjerów -->
+    <Spinner
+        android:id="@+id/employeeSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:spinnerMode="dropdown"
+        android:prompt="@string/select_employee" />
+
+    <!-- Kalendarz -->
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp" />
+
+    <!-- RecyclerView dla listy godzin -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/timeSlotRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="vertical" />
+
+    <!-- Przycisk umówienia wizyty -->
+    <Button
+        android:id="@+id/confirmAppointmentButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/schedule_appointment" />
+</LinearLayout>

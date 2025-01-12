@@ -1,0 +1,103 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/registerTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Zarejestruj się"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="24dp" />
+
+    <EditText
+        android:id="@+id/editTextName"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Imię"
+        android:inputType="textPersonName"
+        android:layout_marginBottom="16dp" />
+
+    <EditText
+        android:id="@+id/editTextSurname"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Nazwisko"
+        android:inputType="textPersonName"
+        android:layout_marginBottom="16dp" />
+
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:layout_marginBottom="16dp" />
+
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Hasło"
+        android:inputType="textPassword"
+        android:layout_marginBottom="16dp" />
+
+    <EditText
+        android:id="@+id/editTextStreet"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Ulica" />
+
+    <EditText
+        android:id="@+id/editTextStreetNumber"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Numer domu" />
+
+    <EditText
+        android:id="@+id/editTextPostalCode"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Kod pocztowy" />
+
+    <EditText
+        android:id="@+id/editTextCity"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Miasto" />
+
+    <EditText
+        android:id="@+id/editTextNIP"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="NIP" />
+
+    <EditText
+        android:id="@+id/editTextCompanyName"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Nazwa firmy" />
+
+
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Zarejestruj się" />
+
+    <TextView
+        android:id="@+id/loginRedirect"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:text="Masz już konto? Zaloguj się"
+        android:textColor="#6200EE"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center_horizontal"
+        android:clickable="true"
+        android:focusable="true" />
+</LinearLayout>

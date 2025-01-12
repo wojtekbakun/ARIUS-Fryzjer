@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Powitanie -->
+        <TextView
+            android:id="@+id/textWelcome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:text="Witaj!"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black" />
+
+        <!-- Pola tekstowe -->
+        <EditText
+            android:id="@+id/editTextFirstName"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Imię" />
+
+        <EditText
+            android:id="@+id/editTextLastName"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Nazwisko" />
+
+        <EditText
+            android:id="@+id/editTextStreet"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Ulica" />
+
+        <EditText
+            android:id="@+id/editTextStreetNumber"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Numer ulicy" />
+
+        <EditText
+            android:id="@+id/editTextPostalCode"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Kod pocztowy" />
+
+        <EditText
+            android:id="@+id/editTextCity"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Miasto" />
+
+        <EditText
+            android:id="@+id/editTextNip"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="NIP" />
+
+        <EditText
+            android:id="@+id/editTextCompanyName"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Nazwa firmy" />
+
+        <!-- Przycisk aktualizacji -->
+        <Button
+            android:id="@+id/buttonUpdateProfile"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Aktualizuj" />
+    </LinearLayout>
+</ScrollView>
