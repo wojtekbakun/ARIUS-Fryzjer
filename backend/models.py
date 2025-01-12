@@ -67,6 +67,13 @@ class Payment(db.Model):
     status = db.Column(db.String(50), default="pending")  # pending, completed, failed
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
+    # Dodatkowe pola dla faktury
+    invoice_name = db.Column(db.String(200), nullable=True)  # Nazwa faktury
+    invoice_sent = db.Column(db.Boolean, default=False)      # Czy faktura została wysłana
+    services_details = db.Column(db.Text, nullable=True)     # Szczegóły usług (JSON w formie tekstu)
+    total_cost = db.Column(db.Float, nullable=True)          # Całkowity koszt usług
+    invoice_date = db.Column(db.DateTime, nullable=True)     # Data wystawienia faktury
+
 class Employee(db.Model):
     __tablename__ = "employee"
 
